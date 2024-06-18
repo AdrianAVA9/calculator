@@ -1,2 +1,2 @@
 # calculator
-Practice CI/CD and 
+Practice CI/CD and unit testing
