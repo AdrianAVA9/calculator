@@ -1,4 +1,31 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var Calculator = function () {
+    let _calculator;
 
-// Write your JavaScript code.
+    let makeOperation = function () {
+        let firstNumber = _calculator.find('.js-first-number').val();
+        let secondNumber = _calculator.find('.js-second-number').val();
+        let operation = _calculator.find('.js-operation').val();
+
+        $.post('/api/calculator/make-operation', {
+            firstNumber, secondNumber, operation
+        }).then((response) => {
+            console.log(response);
+
+            const result = response.result;
+            _calculator.find('.js-result').html(result);
+        }).fail(error => {
+            console.log(error);
+        });
+    };
+
+    let init = function (calculatorContainer) {
+        _calculator = $(calculatorContainer);
+        _calculator.on('click', '.js-make-operation', makeOperation);
+    };
+
+    return {
+        init
+    }
+}();
+
+Calculator.init('.calculator');
