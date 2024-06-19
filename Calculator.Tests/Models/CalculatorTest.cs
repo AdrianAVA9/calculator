@@ -35,13 +35,13 @@ namespace Calculator.Tests.Models
         }
 
         [Fact]
-        public void Subtract_TheNumbersAre2NegativeAnd4_ShouldReturn2()
+        public void Subtract_TheNumbersAre2NegativeAnd4_ShouldReturn6Negative()
         {
             var firstNumber = -2;
             var secondNumber = 4;
             var result = Calculator.Subtract(firstNumber, secondNumber);
 
-            Assert.Equal(-2, result);
+            Assert.Equal(-6, result);
         }
 
         [Fact]
