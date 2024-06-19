@@ -10,6 +10,7 @@
     <div class="calculator">
         <div class="calculator_number">
             <input type="number" class="js-first-number" />
+            <span class="error-message" name="$.firstNumber"></span>
         </div>
         <div>
             <select class="calculator_operation js-operation">
@@ -18,9 +19,11 @@
                 <option value="+">+</option>
                 <option value="-">-</option>
             </select>
+            <span class="error-message" name="operation"></span>
         </div>
         <div class="calculator_number">
             <input type="number" class="js-second-number" />
+            <span class="error-message" name="$.secondNumber"></span>
         </div>
         <div>
             <button class="js-make-operation btn btn-primary btn-sm">Make operation</button>

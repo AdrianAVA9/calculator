@@ -27,6 +27,22 @@ body {
     gap: 10px;
 }
 
-    .calculator > div > * {
-        height: 100%;
+    .calculator > div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: flex-start;
+        max-width: 140px;
     }
+
+        .calculator > div > input,
+        .calculator > div > button,
+        .calculator > div > select {
+            flex: 0 0 46px;
+            min-height: 34px;
+        }
+
+.error-message {
+    font-size: 0.825rem;
+    color: red;
+}
