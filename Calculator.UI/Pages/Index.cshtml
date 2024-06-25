@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Calculator";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
@@ -37,6 +37,13 @@
             <li class="list-group-item list-group-item-primary text-start">
                 <h6 class="fw-bold mb-0">HISTORY</h6>
             </li>
+            @foreach (var operation in Model.Operations)
+            {
+                <li class="list-group-item text-start">
+                    <div>@operation.FirstNumber @operation.MathOperation @operation.SecondNumber</div>
+                    <h5 class="fw-bold">@operation.Result</h5>
+                </li>
+            }
         </ul>
     </div>
 </div>
