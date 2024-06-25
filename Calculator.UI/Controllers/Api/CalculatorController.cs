@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Calculator.UI.Core.Models.Api;
-using Calculator.UI.Core.Validators;
+using Calculator.UI.Core.Api.Responses;
 using Calculator.UI.Core.Models;
+using Calculator.UI.Core.Api.Validators;
 
 namespace Calculator.UI.Controllers.Api
 {

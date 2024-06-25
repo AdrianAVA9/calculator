@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Calculator.UI.Core.Validators
+namespace Calculator.UI.Core.Api.Validators
 {
     public class OperationValidator
     {
