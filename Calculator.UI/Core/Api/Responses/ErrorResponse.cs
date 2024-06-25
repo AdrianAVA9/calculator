@@ -1,4 +1,4 @@
-﻿namespace Calculator.UI.Models.Api
+﻿namespace Calculator.UI.Core.Api.Responses
 {
     public class ErrorResponse
     {

@@ -1,7 +1,11 @@
+using Calculator.UI.Core.Repositories;
+using Calculator.UI.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ICalculatorRepository, CalculatorRepository>();
 
 var app = builder.Build();
 

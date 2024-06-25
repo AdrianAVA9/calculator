@@ -23,11 +23,17 @@ body {
 
 .calculator {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calculator_display {
+    display: flex;
     align-items: stretch;
     gap: 10px;
 }
 
-    .calculator > div {
+    .calculator_display > div {
         display: flex;
         flex-direction: column;
         gap: 5px;
@@ -35,9 +41,9 @@ body {
         max-width: 140px;
     }
 
-        .calculator > div > input,
-        .calculator > div > button,
-        .calculator > div > select {
+        .calculator_display > div > input,
+        .calculator_display > div > button,
+        .calculator_display > div > select {
             flex: 0 0 46px;
             min-height: 34px;
         }

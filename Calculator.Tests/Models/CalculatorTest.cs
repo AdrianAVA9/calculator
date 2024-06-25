@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator.UI.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,10 @@ namespace Calculator.Tests.Models
 {
     public class CalculatorTest
     {
-        public UI.Models.Calculator Calculator { get; set; }
+        public BasicCalculator Calculator { get; set; }
         public CalculatorTest()
         {
-            Calculator = new UI.Models.Calculator();
+            Calculator = new BasicCalculator();
         }
 
         [Fact]
