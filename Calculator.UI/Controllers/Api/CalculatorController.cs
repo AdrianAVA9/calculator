@@ -1,11 +1,10 @@
-﻿using Calculator.UI.Models;
-using Calculator.UI.Models.Api;
-using Calculator.UI.Validators;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
+using Calculator.UI.Core.Models.Api;
+using Calculator.UI.Core.Validators;
+using Calculator.UI.Core.Models;
 
-namespace Calculator.UI.Controllers
+namespace Calculator.UI.Controllers.Api
 {
     [ApiController]
     [Route("api/calculators")]
@@ -24,7 +23,7 @@ namespace Calculator.UI.Controllers
                         Message = "The Operation is invalid!"
                     });
 
-                var calculator = new Models.Calculator();
+                var calculator = new BasicCalculator();
                 var result = 0M;
 
                 var apiResponse = new ApiResponse()

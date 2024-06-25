@@ -1,6 +1,6 @@
-﻿namespace Calculator.UI.Models
+﻿namespace Calculator.UI.Core.Models
 {
-    public class Calculator
+    public class BasicCalculator
     {
         public int Add(int a, int b)
         {
