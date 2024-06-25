@@ -19,7 +19,7 @@
             data
 
         }).then((response) => {
-            const result = response.data.result;
+            const result = response.data?.result ?? 0;
             _calculator.find('.js-result').html(`The result is: ${result}`);
 
             if (!response.ok)

@@ -39,13 +39,6 @@ namespace Calculator.UI.Controllers.Api
                     MathOperation = operation.Operation,
                 };
 
-                var apiResponse = new ApiResponse()
-                {
-                    Ok = true,
-                    Message = "The operation was successfully",
-                    Data = operationResult
-                };
-
                 switch (operation.Operation)
                 {
                     case "+":
@@ -55,25 +48,29 @@ namespace Calculator.UI.Controllers.Api
                         operationResult.Result = calculator.Subtract(operation.FirstNumber, operation.SecondNumber);
                         break;
                     case "/":
-                        try
-                        {
-                            operationResult.Result = calculator.Divide(operation.FirstNumber, operation.SecondNumber);
-                        }
-                        catch (Exception ex)
-                        {
-                            apiResponse.Ok = false;
-                            apiResponse.Message = ex.Message;
-                        }
+                        operationResult.Result = calculator.Divide(operation.FirstNumber, operation.SecondNumber);
                         break;
                     case "x":
                         operationResult.Result = calculator.Multiply(operation.FirstNumber, operation.SecondNumber);
                         break;
                 }
 
-                if (apiResponse.Ok)
-                    await CalculatorRepository.AddAsync(operationResult);
+                await CalculatorRepository.AddAsync(operationResult);
 
-                return Ok(apiResponse);
+                return Ok(new ApiResponse()
+                {
+                    Ok = true,
+                    Message = "The operation was successfully",
+                    Data = operationResult
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                return Ok(new ApiResponse()
+                {
+                    Ok = false,
+                    Message = ex.Message,
+                });
             }
             catch (Exception ex)
             {
