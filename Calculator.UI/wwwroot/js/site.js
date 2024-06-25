@@ -19,11 +19,20 @@
             data
 
         }).then((response) => {
-            const result = response.data?.result ?? 0;
-            _calculator.find('.js-result').html(`The result is: ${result}`);
+            const operation = response.data;
+            _calculator.find('.js-result').html(`The result is: ${operation?.result ?? 0}`);
 
-            if (!response.ok)
+            if (!response.ok) {
                 alert(response.message)
+                return;
+            }
+
+            _calculator.find('.js-operation-history').append(`
+            <li class="list-group-item text-start">
+                <div>${operation.firstNumber} ${operation.mathOperation} ${operation.secondNumber}</div>
+                <h5 class="fw-bold">${operation.result}</h5>
+            </li>
+            `)
 
         }).fail(error => {
             let errors = error.responseJSON?.errors ? error.responseJSON.errors : {};

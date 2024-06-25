@@ -8,28 +8,35 @@
     <h1 class="display-4">Calculator</h1>
 
     <div class="calculator">
-        <div class="calculator_number">
-            <input type="number" class="js-first-number" />
-            <span class="error-message" name="$.firstNumber"></span>
+        <div class="calculator_display">
+            <div class="calculator_number">
+                <input type="number" class="js-first-number" />
+                <span class="error-message" name="$.firstNumber"></span>
+            </div>
+            <div>
+                <select class="calculator_operation js-operation">
+                    <option value="x">X</option>
+                    <option value="/">/</option>
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+                <span class="error-message" name="operation"></span>
+            </div>
+            <div class="calculator_number">
+                <input type="number" class="js-second-number" />
+                <span class="error-message" name="$.secondNumber"></span>
+            </div>
+            <div>
+                <button class="js-make-operation btn btn-primary btn-sm">Make operation</button>
+            </div>
+            <div class="calculator_result js-result">
+                0
+            </div>
         </div>
-        <div>
-            <select class="calculator_operation js-operation">
-                <option value="x">X</option>
-                <option value="/">/</option>
-                <option value="+">+</option>
-                <option value="-">-</option>
-            </select>
-            <span class="error-message" name="operation"></span>
-        </div>
-        <div class="calculator_number">
-            <input type="number" class="js-second-number" />
-            <span class="error-message" name="$.secondNumber"></span>
-        </div>
-        <div>
-            <button class="js-make-operation btn btn-primary btn-sm">Make operation</button>
-        </div>
-        <div class="calculator_result js-result">
-            0
-        </div>
+        <ul class="calculator_history list-group list-group-flush js-operation-history">
+            <li class="list-group-item list-group-item-primary text-start">
+                <h6 class="fw-bold mb-0">HISTORY</h6>
+            </li>
+        </ul>
     </div>
 </div>
