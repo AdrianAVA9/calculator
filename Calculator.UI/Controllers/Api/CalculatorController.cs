@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Calculator.UI.Core.Api.Responses;
 using Calculator.UI.Core.Models;
 using Calculator.UI.Core.Api.Validators;
+using Calculator.UI.Repositories;
+using Calculator.UI.Core.Repositories;
 
 namespace Calculator.UI.Controllers.Api
 {
@@ -10,9 +12,15 @@ namespace Calculator.UI.Controllers.Api
     [Route("api/calculators")]
     public class CalculatorController : ControllerBase
     {
+        public ICalculatorRepository CalculatorRepository { get; set; }
+        public CalculatorController(ICalculatorRepository calculatorRepository)
+        {
+            CalculatorRepository = calculatorRepository;
+        }
+
         [HttpPost]
         [Route("make-operation")]
-        public IActionResult MakeOperation([FromBody] OperationValidator operation)
+        public async Task<IActionResult> MakeOperation([FromBody] OperationValidator operation)
         {
             try
             {
@@ -24,27 +32,32 @@ namespace Calculator.UI.Controllers.Api
                     });
 
                 var calculator = new BasicCalculator();
-                var result = 0M;
+                var operationResult = new Operation()
+                {
+                    FirstNumber = operation.FirstNumber,
+                    SecondNumber = operation.SecondNumber,
+                    MathOperation = operation.Operation,
+                };
 
                 var apiResponse = new ApiResponse()
                 {
                     Ok = true,
                     Message = "The operation was successfully",
-                    Result = 0
+                    Data = operationResult
                 };
 
                 switch (operation.Operation)
                 {
                     case "+":
-                        result = calculator.Add(operation.FirstNumber, operation.SecondNumber);
+                        operationResult.Result = calculator.Add(operation.FirstNumber, operation.SecondNumber);
                         break;
                     case "-":
-                        result = calculator.Subtract(operation.FirstNumber, operation.SecondNumber);
+                        operationResult.Result = calculator.Subtract(operation.FirstNumber, operation.SecondNumber);
                         break;
                     case "/":
                         try
                         {
-                            result = calculator.Divide(operation.FirstNumber, operation.SecondNumber);
+                            operationResult.Result = calculator.Divide(operation.FirstNumber, operation.SecondNumber);
                         }
                         catch (Exception ex)
                         {
@@ -53,11 +66,12 @@ namespace Calculator.UI.Controllers.Api
                         }
                         break;
                     case "x":
-                        result = calculator.Multiply(operation.FirstNumber, operation.SecondNumber);
+                        operationResult.Result = calculator.Multiply(operation.FirstNumber, operation.SecondNumber);
                         break;
                 }
 
-                apiResponse.Result = result;
+                if (apiResponse.Ok)
+                    await CalculatorRepository.AddAsync(operationResult);
 
                 return Ok(apiResponse);
             }
